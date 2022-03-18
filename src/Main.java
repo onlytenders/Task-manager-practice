@@ -2,12 +2,10 @@ import java.util.function.*;
 
 public class Main {
     public static void main(String[] args) {
-        Calculator calc = Calculator.instance.get();
+        OnTaskDoneListener taskListener = System.out::println;
+        OnTaskErrorListener errorListener = System.out::println;
 
-        int a = calc.plus.apply(1, 1);
-        int b = calc.minus.apply(2, 1);
-        int c = calc.divide.apply(a, b);
-
-        calc.println.accept(c);
+        Worker worker = new Worker(taskListener, errorListener);
+        worker.start();
     }
 }
